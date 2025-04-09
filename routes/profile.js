@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
-const indexController = require('../controllers/indexController')
+const profileController = require('../controllers/profileController')
 /* GET home page. */
-router.get('/', indexController.index);
+router.get('/', profileController.index);
 
 module.exports = router;
