@@ -27,7 +27,7 @@ body {
 }
 
 body {
-  font-family: var(--base-font-family);
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   font-weight: 300;
   background-color: var(--light-gray);
 }
@@ -41,7 +41,7 @@ ol {
 
 a {
   display: inline-block;
-  text-decoration: none;
+  text-decoration: underline;
   color: inherit;
 }
 
@@ -68,7 +68,7 @@ hr {
 /*====== Main Header ======*/
 .main-header {
   padding: 15px 0;
-  background-color: var(--yellow);
+  background-color:lightblue;
 }
 
 .main-header_home-link,
@@ -169,6 +169,7 @@ hr {
 }
 
 .products-title {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
   font-size: 2.4em;
   font-weight: 400;
   color: var(--gray);
@@ -259,7 +260,7 @@ hr {
 
 /*====== Footer ======*/
 .main-footer {
-  background-color: #ffffff;
+  background-color: lightblue;
   padding: 20px 0;
   margin-top: 80px;
 }
@@ -269,7 +270,7 @@ hr {
 }
 
 .footer-data i {
-  color: var(--light-blue);
+  color: black;
   font-size: 3.5em;
 }
 
