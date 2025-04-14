@@ -1,10 +1,22 @@
-const infoBase = require('../db/index')
+const infoBase = require('../db/index');
+
 
 const productController = {
-    index : function(req, res, next) {
+    product : function(req, res, next) {
         res.render('product',  { datosProductos: infoBase.productos, });
-      }
+      },
+      
+    productAdd : function(req, res, next) {
+      res.render('productAdd', { datosUsuario: infoBase.datosUsuario, });
+    },
+
+    searchResults : function(req, res, next) {
+      res.render('search-results',
+      { datosUsuario: infoBase.datosUsuario, 
+        datosProductos: infoBase.productos,
+      });
+    },
 
    };
     
-    module.exports = productController;
+module.exports = productController;

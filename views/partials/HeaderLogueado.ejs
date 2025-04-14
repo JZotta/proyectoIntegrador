@@ -10,9 +10,9 @@
 			<!-- Font Awesome Stylesheet -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 	<!-- Bootstrap Grid Stylesheet -->
-	<link rel="stylesheet" href="./css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-grid.min.css">
 	<!-- Own Stylesheet -->
-	<link rel="stylesheet" href="./css/app.css">
+	<link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
 	<!-- Header -->
@@ -21,13 +21,13 @@
 			<div class="row align-items-center">
 				<div class="col-5 col-md-2">
 					<a href="/" class="main-header_home-link">
-						<img src="images/logo-mercado-liebre.png">
+						<img src="/images/logo-mercado-liebre.png">
 					</a>
 					<h1 class="textoArgento">Argento shirts</h1>
 				</div>
 	
 				<div class="col-7 col-md-6">
-					<form action="" method="GET" class="search-form">
+					<form action="/product/searchResults" method="GET" class="search-form">
 						<input type="text" name="search" placeholder="Buscar productos, marcas y más" class="search-form_input">
 						<button type="submit" class="search-form_button"><i class="fas fa-search"></i></button>
 					</form>
@@ -48,11 +48,11 @@
 			<nav class="main-navbar">
 				<ul class="left-navbar">
 					<li><a href="/">Todos los productos</a></li>
-					<li><a href="productAdd">Cargar productos</a></li>
+					<li><a href="/product/productAdd">Cargar productos</a></li>
 				</ul>
 	
 				<ul class="right-navbar">
-					<li><a href="/views/profile.ejs">
+					<li><a href="/usuario/profile">
 						<%= datosUsuario.usuario %> <i class="fas fa-user"></i>
 						</a>
 					</li>

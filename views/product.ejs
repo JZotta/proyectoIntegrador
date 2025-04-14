@@ -10,9 +10,9 @@
 	<!-- Font Awesome Stylesheet -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
 	<!-- Bootstrap Grid Stylesheet -->
-	<link rel="stylesheet" href="./css/bootstrap-grid.min.css">
+	<link rel="stylesheet" href="/css/bootstrap-grid.min.css">
 	<!-- Own Stylesheet -->
-	<link rel="stylesheet" href="./css/app.css">
+	<link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
 	<!-- Header -->
@@ -24,9 +24,11 @@
 		<div class="d-flex align-items-center">
 			<h2 class="products-title"><%= datosProductos[3].nombreDeProducto %></h2> 
 			<p class="product-detail-description">
-				<a href="productAdd">Editar</a>
+				<a href="/product/productAdd">Editar</a>
 			</p>
 		</div>
+
+
 		<div class="product-detail">
 			<div class="row">
 				<article class="col-12 col-lg-8 product-detail-info">
@@ -35,49 +37,17 @@
 						<%= datosProductos[3].descripcion %></p>
 				</article>
 				<div class="col-12 col-lg-4">
-					<section class="comments">
+					<% for (let i = 0; i < datosProductos[3].comentarios.length; i++) {%> 	
+						<section class="comments">
 						<article>
-							<img src="<%= datosProductos[3].comentarios[0].imagenPerfil %>" alt="">
+							<img src="<%= datosProductos[3].comentarios[i].imagenPerfil %>" alt="">
 							<div class="data">
 								<p class="user">
-								<strong> <a href="profile"><%= datosProductos[3].comentarios[0].nombreUsuario %> </a> </strong>
-								<%= datosProductos[3].comentarios[0].textoComentario %></p>
+								<strong> <a href="profile"><%= datosProductos[3].comentarios[i].nombreUsuario %> </a> </strong>
+								<%= datosProductos[3].comentarios[i].textoComentario %></p>
 							</div>
 						</article>
-						<article>
-							<img src="<%= datosProductos[3].comentarios[1].imagenPerfil %>" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="profile"><%= datosProductos[3].comentarios[1].nombreUsuario %> </a> </strong>
-									<%= datosProductos[3].comentarios[1].textoComentario %></p>
-							</div>
-						</article>
-						<article>
-							<img src="<%= datosProductos[3].comentarios[2].imagenPerfil %>" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="profile"><%= datosProductos[3].comentarios[2].nombreUsuario %> </a> </strong>
-									<%= datosProductos[3].comentarios[2].textoComentario %>
-									</p>
-							</div>
-						</article>
-						<article>
-							<img src="<%= datosProductos[3].comentarios[3].imagenPerfil %>" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="profile"><%= datosProductos[3].comentarios[3].nombreUsuario %></a> </strong>
-									<%= datosProductos[3].comentarios[3].textoComentario %></p>
-							</div>
-						</article>
-						<article>
-							<img src="<%= datosProductos[3].comentarios[4].imagenPerfil %>" alt="">
-							<div class="data">
-								<p class="user">
-									<strong> <a href="profile"><%= datosProductos[3].comentarios[4].nombreUsuario %></a> </strong>
-									<%= datosProductos[3].comentarios[4].textoComentario %></p>
-							</div>
-						</article>
-
+					<%} %>	
 					</section>
 					<form class="form" action="" method="POST">
 						<input class="form-input" type="text" value="" placeholder="Agregar comentario">
