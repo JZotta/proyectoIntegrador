@@ -29,22 +29,22 @@
 				<h2 class="products-title">Productos</h2>
 			</div>
 			<!-- Show the "ultimos" products -->
-		<% for (let i = 0; i < datosProductos.length; i++) {%> 
-			<div class="col-12 col-sm-6 col-lg-3">
-					<section class="product-box">
-					<a href="/product/detalle/<%= datosProductos[i].id %>">
-						<figure class="product-box_image">
-							<img src="<%= datosProductos[i].imagen %>" alt="camiseta">
-						</figure>
-						<article class="product-box_data">
-							<h2><%= datosProductos[i].nombreDeProducto %></h2>
-							<p><%= datosProductos[i].descripcion %></p>
-							<p>Comentarios: 12</p>
-						</article>
-					</a>
-				</section> 
-			</div>	
-		<%} %>	
+			<% for (let i = 0; i < productos.length; i++) {%> 
+				<div class="col-12 col-sm-6 col-lg-3">
+						<section class="product-box">
+						<a href="/product/detalle/<%= productos[i].id_producto %>">
+							<figure class="product-box_image">
+						<img src="/images/products/<%= productos[i].nombre_imagen %>" alt="<%= productos[i].nombre_producto %>">
+							</figure>
+							<article class="product-box_data">
+								<h2><%= productos[i].nombre_producto %></h2>
+								<p><%= productos[i].descripcion_producto %></p>
+								<p>Comentarios: 12</p>
+							</article>
+						</a>
+					</section> 
+				</div>	
+					<%} %>
 	</div>
 
 

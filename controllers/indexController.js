@@ -1,16 +1,12 @@
-const infoBase = require('../db/index')
-
+const db = require('../db/models')
 
 const indexController = {
-    index : function(req, res, next) {
-        res.render('index',
-        { datosProductos: infoBase.productos, });
-        },
-    
+        index: function (req, res) {
+        db.Producto.findAll()
+            .then(function(productos){
+                res.render("index", {productos : productos})
+            })
+        }
+    }
 
-
-    
-      
-    };
-    
 module.exports = indexController;

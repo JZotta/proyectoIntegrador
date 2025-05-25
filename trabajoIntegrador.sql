@@ -2,54 +2,57 @@ CREATE SCHEMA proyectoIntegrador;
 USE proyectoIntegrador;
 
 CREATE TABLE usuarios (
-	idUsuario INT UNSIGNED PRIMARY KEY AUTO_INCREMENT ,
+	id_usuario INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     email VARCHAR(50) NOT NULL UNIQUE,
     contrasenia VARCHAR(220) NOT NULL,
     fecha DATE NOT NULL,
     dni INT NOT NULL UNIQUE,
-    fotoPerfil VARCHAR(1000),
-    createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deletedAT TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
+    nombre VARCHAR(100) NOT NULL,
+    foto_perfil VARCHAR(1000),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP
 );
 
 CREATE TABLE productos (
-	idProducto INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    idUsuario INT UNSIGNED NOT NULL,
-    nombreImagen VARCHAR(50) NOT NULL UNIQUE,
-    nombreProducto VARCHAR(200) NOT NULL,
-    descripcionProducto VARCHAR(200),
-	createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deletedAT TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario)    
+	id_producto INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    id_usuario INT UNSIGNED NOT NULL,
+    nombre_imagen VARCHAR(50) NOT NULL UNIQUE,
+    nombre_producto VARCHAR(200) NOT NULL,
+    descripcion_producto VARCHAR(200),
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
+
 CREATE TABLE comentarios (
-	idComentario INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    idProducto INT UNSIGNED NOT NULL,
-    idUsuario INT UNSIGNED NOT NULL,
-    textoComentario VARCHAR(1000) NOT NULL,
-	createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    deletedAT TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
-    FOREIGN KEY (idProducto) REFERENCES productos(idProducto),
-    FOREIGN KEY (idUsuario) REFERENCES usuarios(idUsuario) 
+	id_comentario INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    id_producto INT UNSIGNED NOT NULL,
+    id_usuario INT UNSIGNED NOT NULL,
+    texto_comentario VARCHAR(1000) NOT NULL,
+	created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    deleted_at TIMESTAMP NULL ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_producto) REFERENCES productos(id_producto),
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario)
 );
 
-INSERT INTO usuarios
-VALUES (DEFAULT, 'perezgonzalo@hotmail.com' , 'Gperez2007' , '2007-09-14', '48759648', '/images/users/fotoGonzalo.png', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO usuarios
-VALUES (DEFAULT, 'gomezmanuel@hotmail.com' , 'Mgomez2009' , '2009-08-24', '50783233', '/images/users/fotoManuel.png', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'perezgonzalo@hotmail.com' , 'Gperez2007' , '2007-09-14', '48759648', 'Gonzalo Perez', '/images/users/fotoGonzalo.png', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO usuarios
-VALUES (DEFAULT, 'perezpedro@hotmail.com' , 'Pperez1999' , '1999-12-28', '38427931', '/images/users/fotoPedro.png', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'gomezmanuel@hotmail.com' , 'Mgomez2009' , '2009-08-24', '50783233', 'Manuel Gomez', '/images/users/fotoManuel.png', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO usuarios
-VALUES (DEFAULT, 'hernandezjavier@hotmail.com' , 'jHernandez1965' , '1965-01-10', '20837964', '/images/users/fotoJavier.png', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'perezpedro@hotmail.com' , 'Pperez1999' , '1999-12-28', '38427931', 'Pedro Perez', '/images/users/fotoPedro.png', DEFAULT, DEFAULT, DEFAULT);
 
 INSERT INTO usuarios
-VALUES (DEFAULT, 'sanchezrodrigo@hotmail.com' , 'Rsanchez2011' , '2011-11-03', '56742356', '/images/users/fotoRodrigo.png', DEFAULT, DEFAULT, DEFAULT);
+VALUES (DEFAULT, 'hernandezjavier@hotmail.com' , 'jHernandez1965' , '1965-01-10', '20837964', 'Javier Hernandez', '/images/users/fotoJavier.png', DEFAULT, DEFAULT, DEFAULT);
+
+INSERT INTO usuarios
+VALUES (DEFAULT, 'sanchezrodrigo@hotmail.com' , 'Rsanchez2011' , '2011-11-03', '56742356', 'Rodrigo Sanchez', '/images/users/fotoRodrigo.png', DEFAULT, DEFAULT, DEFAULT);
 
 
 
