@@ -27,13 +27,18 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-			<form action="" method="get">
+			<form action="/usuario/processLogin" method="POST">
 			<label>Usuario: <input type="email" name="emailLog" required></label> <br>
 			<label>Contraseña: <input type="password" name="passwordLog" required></label> <br>
 			<label>Recordarme: <input type="checkbox" name="recordarmeLog" ></label> <br>
 			<button type="submit">Loguearse</button>
             </form>
 			</h2>
+			
+				<% if (error != undefined) { %>
+				<%= error %>
+			  <% } %>
+
 
 
 			<%- include('partials/footer') %>

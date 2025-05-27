@@ -15,10 +15,12 @@
 	<!-- Own Stylesheet -->
 	<link rel="stylesheet" href="/css/app.css">
 </head>
-
-<body>
+<% if (usuario) { %>
+	<%- include('partials/headerLogueado') %>
+ <% } else { %>
 	<%- include('partials/header') %>
-
+ <% } %>
+<body>
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">
@@ -36,13 +38,13 @@
 			<% for (let i = 0; i < datosProductos.length; i++) {%> 
 				<div class="col-12 col-sm-6 col-lg-3">
 						<section class="product-box">
-						<a href="/product/detalle/<%= datosProductos[i].id %>">
+						<a href="/product/detalle/<%= productos[i].id_producto %>">
 							<figure class="product-box_image">
-								<img src="<%= datosProductos[i].imagen %>" alt="camiseta">
+								<img src="<%= productos[i].nombre_imagen %>" alt="camiseta">
 							</figure>
 							<article class="product-box_data">
-								<h2><%= datosProductos[i].nombreDeProducto %></h2>
-								<p><%= datosProductos[i].descripcion %></p>
+								<h2><%= productos[i].nombre_producto %></h2>
+								<p><%= productos[i].descripcion_producto %></p>
 								<p>Comentarios: 12</p>
 							</article>
 						</a>

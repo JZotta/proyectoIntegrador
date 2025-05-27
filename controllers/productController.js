@@ -9,7 +9,9 @@ const productController = {
           })
           
           .then(function (producto) {
-            res.render("product", {producto: producto})
+            res.render("product", {producto: producto ,
+              usuario: req.session.usuario
+            })
           })
           .catch(function (error) {
           console.log(error)

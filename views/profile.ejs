@@ -15,17 +15,17 @@
 	<link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-	<%- include('partials/HeaderLogueado') %>
+	<%- include('partials/headerLogueado') %>
 
 	<!-- Datos del usuario -->
 	<section class="info-usuario container products-wrapper">
 		<div class="row">
 			<div class="img-container offset-3 col-2">
-				<img src="<%= datosUsuario.fotoPerfil %>" alt="foto de perfil" class="foto-perfil">
+				<img src="<%= usuario.foto_perfil %>" alt="foto de perfil" class="foto-perfil">
 			</div>
 			<div class="data-container col-6">
 				<div class="d-flex align-items-center ">
-					<h1 class="main-title"><%= datosUsuario.usuario %> 
+					<h1 class="main-title"><%= usuario.nombre %> 
 						<a href="profile-edit.html">
 							<i class="fas fa-cog"></i>
 						</a>
@@ -35,7 +35,7 @@
 				</div>
 				<div>
 					<ul class="">
-						<li><%= datosUsuario.email %> </li>
+						<li><%= usuario.email %> </li>
 						<li>8 productos</li>
 						<li>200 seguidores</li>
 						<li>300 comentarios</li>
@@ -53,22 +53,22 @@
 				<h2 class="products-title">Mis productos</h2>
 			</div>
 			<!-- Show mis productos -->
-			<% for (let i = 0; i < datosProductos.length; i++) {%> 
+			<% for (let i = 0; i < productos.length; i++) {%> 
 				<div class="col-12 col-sm-6 col-lg-3">
 						<section class="product-box">
-						<a href="/product/detalle/<%= datosProductos[i].id %>">
+						<a href="/product/detalle/<%= productos[i].id_producto %>">
 							<figure class="product-box_image">
-								<img src="<%= datosProductos[i].imagen %>" alt="cafetera moulinex">
+						<img src="/images/products/<%= productos[i].nombre_imagen %>" alt="<%= productos[i].nombre_producto %>">
 							</figure>
 							<article class="product-box_data">
-								<h2><%= datosProductos[i].nombreDeProducto %></h2>
-								<p><%= datosProductos[i].descripcion %></p>
+								<h2><%= productos[i].nombre_producto %></h2>
+								<p><%= productos[i].descripcion_producto %></p>
 								<p>Comentarios: 12</p>
 							</article>
 						</a>
 					</section> 
 				</div>	
-			<%} %>	
+					<%} %>
 			
 	<!-- /Mis productos -->
 

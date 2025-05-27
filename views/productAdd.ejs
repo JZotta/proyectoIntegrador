@@ -14,7 +14,11 @@
 	<!-- Own Stylesheet -->
 	<link rel="stylesheet" href="/css/app.css">
 </head>
-<%- include('partials/HeaderLogueado') %>
+<% if (usuario) { %>
+	<%- include('partials/headerLogueado') %>
+ <% } else { %>
+	<%- include('partials/header') %>
+ <% } %>
 <form action="" method="get">
     <label>Imagen: <input type="file" name="imagenProducto" required></label> <br>
     <label>Nombre de producto: <input type="text" name="nombreProducto" required></label> <br>

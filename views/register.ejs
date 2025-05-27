@@ -27,7 +27,7 @@
 			</div>
 			<!-- Show the "ultimos" products -->
 			<h2 class="col-12"> 
-				<form action="/" method="post">
+				<form action="/usuario/nuevoUsuario" method="POST">
 					<label>Email: <input type="email" name="emailReg" required></label> <br>
 					<label>Usuario: <input type="text" name="usuarioReg" required></label> <br>
 					<label>Contraseña: <input type="password" name="passwordReg" required></label> <br>
@@ -38,6 +38,10 @@
 				</form>
 	
 			</h2>
+					<% if (error != undefined) { %>
+				<%= error %>
+			  <% } %>
+
 
 
 	<!-- footer -->
