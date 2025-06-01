@@ -14,7 +14,7 @@
 	<!-- Own Stylesheet -->
 	<link rel="stylesheet" href="/css/app.css">
 </head>
-<% if (usuario) { %>
+<% if (usuarioLogueado != undefined) { %>
 	<%- include('partials/headerLogueado') %>
  <% } else { %>
 	<%- include('partials/header') %>

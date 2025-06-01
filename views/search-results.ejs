@@ -15,12 +15,14 @@
 	<!-- Own Stylesheet -->
 	<link rel="stylesheet" href="/css/app.css">
 </head>
-<% if (usuario) { %>
+
+<body>
+	<% if (usuarioLogueado != undefined) { %>
 	<%- include('partials/headerLogueado') %>
  <% } else { %>
 	<%- include('partials/header') %>
  <% } %>
-<body>
+
 	<!-- Novedades -->
 	<div class="container products-wrapper">
 		<div class="row">

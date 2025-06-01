@@ -1,9 +1,8 @@
 const db = require('../db/models')
 const bcrypt = require('bcryptjs')
-const usuario = db.Usuario
 const usuarioController = {
     index: function (req, res) {
-        usuario.findAll()
+        db.Usuario.findAll()
             .then(function (productos) {
                 res.render("index", { productos: productos })
             })
@@ -14,7 +13,7 @@ const usuarioController = {
     mostrar: function (req, res) {
         if (req.session.usuario != undefined) {
             return res.render("profile")
-        } else {                                      //si ya esta registrado lo manda a su perd
+        } else {                                      
             res.render("register",  {error: " "})
         }
     },
@@ -24,7 +23,7 @@ const usuarioController = {
                 error: "La contraseña debe tener al menos 3 caracteres"
             })
         }
-        usuario.findOne({
+        db.Usuario.findOne({
             where: {email: req.body.emailReg}
         })
         .then(function (usuarioRegistrado) {
@@ -37,9 +36,8 @@ const usuarioController = {
             
         })
 
-
         let passEncriptada = bcrypt.hashSync(req.body.passwordReg, 10);
-        usuario.create({
+        db.Usuario.create({
             email: req.body.emailReg,
             nombre: req.body.usuarioReg,
             fecha: req.body.fechaDeNacimientoReg,
@@ -61,7 +59,7 @@ const usuarioController = {
         res.render("login", {error: " "})
     },
     processLogin: function (req, res) {
-        usuario.findOne({
+        db.Usuario.findOne({
             where: { email: req.body.emailLog }
         })
             .then(function (resultado) {
@@ -71,10 +69,10 @@ const usuarioController = {
                     })
                 }
                 if (resultado.email == req.body.emailLog) {
-                    let check = bcrypt.compareSync(req.body.passwordLog, resultado.contrasenia)  //chequear esto
+                    let check = bcrypt.compareSync(req.body.passwordLog, resultado.contrasenia)  
                     if (check == true) {
                         req.session.usuario = resultado
-                        res.cookie("usuario", resultado.id_usuario, {maxAge: 1000 * 60 * 5})
+                        res.cookie("usuario", resultado.id_usuario, {maxAge: 1000 * 60 * 60 * 24})
                     }
                 }
                 res.redirect("/")
@@ -95,13 +93,14 @@ const usuarioController = {
         if (req.session.usuario == undefined) {
             return res.redirect('/usuario/login')
         }
-        usuario.findByPk(req.session.usuario.id_usuario, {
+        db.Usuario.findByPk(req.session.usuario.id_usuario, {
             include: [{association: "productos"}]
         })
         .then(function(usuario) {
             res.render('profile', {
                 usuario: usuario,
-                productos: usuario.productos
+                productos: usuario.productos,
+                usuarioLogueado: req.session.usuario
             })
         })
         .catch(function(error) {
@@ -109,8 +108,28 @@ const usuarioController = {
             res.redirect('/')
         })
     },
+
+    verPerfil: function (req, res) {        
+        db.Usuario.findByPk(req.params.id, {
+            include: [{association: "productos"}]
+        })
+        .then(function(usuario) {            
+            res.render('profile', {
+                usuario: usuario,
+                productos: usuario.productos,
+                usuarioLogueado: req.session.usuario
+                
+            })
+        })
+        .catch(function(error) {
+            console.log(error);
+            res.redirect('/')
+        })
+    }
+    
+    
 };
-module.exports = usuarioController;
+module.exports = usuarioController
 
 
 

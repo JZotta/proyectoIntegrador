@@ -28,12 +28,11 @@ app.use(session({ secret: "nuestro mensaje secreto",
 
 app.use(function (req,res,next) {
   if (req.session.usuario != undefined){
-    res.locals.usuario = req.session.usuarioReg
+    res.locals.usuario = req.session.usuario
   } 
   return next();
   
 })
-
 
 
 app.use('/', indexRouter);

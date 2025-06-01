@@ -24,7 +24,7 @@
 						<img src="/images/logo-mercado-liebre.png">
 					</a>
 					<h1 class="textoArgento">Argento shirts</h1>
-					<h1>¡Te damos la bienvenida <%= usuario.nombre %>! </h1>
+					<h1>¡Te damos la bienvenida <%= usuarioLogueado.nombre %>! </h1>
 				</div>
 	
 				<div class="col-7 col-md-6">
@@ -55,7 +55,7 @@
 	
 				<ul class="right-navbar">
 					<li><a href="/usuario/profile">
-						<%= usuario.nombre %> <i class="fas fa-user"></i>
+						<%= usuarioLogueado.nombre %> <i class="fas fa-user"></i>
 						</a>
 					</li>
 					<li>
