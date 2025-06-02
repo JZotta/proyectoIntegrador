@@ -62,27 +62,37 @@ const usuarioController = {
         db.Usuario.findOne({
             where: { email: req.body.emailLog }
         })
-            .then(function (resultado) {
-                if (resultado == undefined) {
-                    return res.render("login", {
-                        error: "El email no se encuentra registrado"
-                    })
-                }
-                if (resultado.email == req.body.emailLog) {
-                    let check = bcrypt.compareSync(req.body.passwordLog, resultado.contrasenia)  
-                    if (check == true) {
-                        req.session.usuario = resultado
-                        res.cookie("usuario", resultado.id_usuario, {maxAge: 1000 * 60 * 60 * 24})
-                    }
-                }
-                res.redirect("/")
-            })
-            .catch(function (error) {
-                console.log(error)
+        .then(function (resultado) {
+            if (resultado == undefined) {
                 return res.render("login", {
-                    error: ""
+                    error: "El email no se encuentra registrado"
                 })
-            })
+            }
+            if (resultado.email == req.body.emailLog) {
+                let check = bcrypt.compareSync(req.body.passwordLog, resultado.contrasenia)  
+                if (check == true) {
+                    req.session.usuario = resultado;
+                    
+                  
+                    if (req.body.recordarme) {
+                        res.cookie('usuario', resultado.id_usuario, {
+                            maxAge: 1000 * 60 * 60 * 24 * 30, 
+                        });
+                    }
+                    
+                    return res.redirect("/");
+                }
+            }
+            return res.render("login", {
+                error: "Credenciales inválidas"
+            });
+        })
+        .catch(function (error) {
+            console.log(error);
+            return res.render("login", {
+                error: "Error al intentar iniciar sesión"
+            });
+        });
     },
     logout: function (req, res) {
         req.session.destroy();
