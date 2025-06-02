@@ -14,7 +14,7 @@
 	<!-- Own Stylesheet -->
 	<link rel="stylesheet" href="/css/app.css">
 </head>
-<% if (usuarioLogueado != undefined) { %>
+<% if (usuarioLogueado) { %>
 	<%- include('partials/headerLogueado') %>
  <% } else { %>
 	<%- include('partials/header') %>
@@ -22,7 +22,7 @@
 <body>
 	<!-- Banner -->
 	<div class="banner">
-		<img src="images/img-home-banner.jpg" alt="Banner de ofertas">
+		<img src="images/img-home-banner.jpg" alt="Banner ofertas">
 	</div>
 	<!-- /Banner -->
 
@@ -43,7 +43,9 @@
 							<article class="product-box_data">
 								<h2><%= productos[i].nombre_producto %></h2>
 								<p><%= productos[i].descripcion_producto %></p>
-								<p>Comentarios: 12</p>
+								<a href="/usuario/profile/<%= productos[i].usuario.id_usuario %>">
+									Publicado por: <%= productos[i].usuario.nombre %>
+								</a>
 							</article>
 						</a>
 					</section> 

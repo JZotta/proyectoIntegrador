@@ -1,5 +1,5 @@
 const db = require('../db/models')
-
+const op = db.Sequelize.Op;
 const productController = {
   detalle: function (req, res) {
     db.Producto.findByPk(req.params.id_producto, {
@@ -57,8 +57,34 @@ const productController = {
   },
 
   searchResults: function (req, res, next) {
-    res.render('search-results', {usuarioLogueado: req.session.usuario
-});
+    const buscado = req.query.search;
+    
+    if (!buscado) {
+      return res.redirect('/');
+    }
+
+    db.Producto.findAll({
+      where: {
+        nombre_producto: {
+          [op.like]: `%${buscado}%`
+        }
+      },
+      include: [{ 
+        association: "usuario",
+        attributes: ['id_usuario', 'nombre']
+      }]
+    })
+    .then(function(productos){
+      res.render('search-results', {
+        productos: productos,
+        usuarioLogueado: req.session.usuario,
+        buscado: buscado
+      });
+    })
+    .catch(function(error){
+      console.log('Error en la búsqueda:', error);
+      res.redirect('/')
+    })
   },
 
   agregarComentario: function (req, res, next) {

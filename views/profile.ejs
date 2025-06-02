@@ -15,7 +15,11 @@
 	<link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
-	<%- include('partials/headerLogueado') %>
+	<% if (usuarioLogueado) { %>
+		<%- include('partials/headerLogueado') %>
+	<% } else { %>
+		<%- include('partials/header') %>
+	<% } %>
 
 	<!-- Datos del usuario -->
 	<section class="info-usuario container products-wrapper">
@@ -36,7 +40,7 @@
 				<div>
 					<ul class="">
 						<li><%= usuario.email %> </li>
-						<li>8 productos</li>
+						<li><%= productos.length %> productos</li>
 						<li>200 seguidores</li>
 						<li>300 comentarios</li>
 					</ul>
@@ -50,7 +54,7 @@
 	<div class="container products-wrapper">
 		<div class="row">
 			<div class="col-12">
-				<h2 class="products-title">Mis productos</h2>
+				<h2 class="products-title">Productos de <%= usuario.nombre %></h2>
 			</div>
 			<!-- Show mis productos -->
 			<% for (let i = 0; i < productos.length; i++) {%> 
@@ -68,10 +72,10 @@
 						</a>
 					</section> 
 				</div>	
-					<%} %>
-			
+			<% } %>
+		</div>
+	</div>
 	<!-- /Mis productos -->
-
 
 	<!-- footer -->
 	<%- include('partials/footer') %>
