@@ -59,7 +59,7 @@ const productController = {
   searchResults: function (req, res, next) {
     const buscado = req.query.search;
     
-    if (!buscado) {
+    if (buscado == undefined || buscado == '') {
       return res.redirect('/');
     }
 
@@ -69,10 +69,7 @@ const productController = {
           [op.like]: `%${buscado}%`
         }
       },
-      include: [{ 
-        association: "usuario",
-        attributes: ['id_usuario', 'nombre']
-      }]
+      include: [{ association: "usuario" }]
     })
     .then(function(productos){
       res.render('search-results', {

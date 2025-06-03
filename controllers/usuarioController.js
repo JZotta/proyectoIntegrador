@@ -72,15 +72,8 @@ const usuarioController = {
                 let check = bcrypt.compareSync(req.body.passwordLog, resultado.contrasenia)  
                 if (check == true) {
                     req.session.usuario = resultado;
-                    
-                  
-                    if (req.body.recordarme) {
-                        res.cookie('usuario', resultado.id_usuario, {
-                            maxAge: 1000 * 60 * 60 * 24 * 30, 
-                        });
-                    }
-                    
-                    return res.redirect("/");
+                    res.cookie('usuario', resultado.id_usuario, {maxAge: 1000 * 60 * 60 * 24})
+                  return res.redirect("/");
                 }
             }
             return res.render("login", {
